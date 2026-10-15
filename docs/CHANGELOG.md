@@ -56,6 +56,19 @@ Companion: `BRIEF.md` (what/why/status). One line per event, newest last.
   Verified dynamic switching on physical device via `cmd uimode night yes/no`.
   Captured screenshots for both themes in `docs/screenshots/test_dark_mode.png` and `test_light_mode.png`.
   15/15 unit tests pass. Debug build green.
+- **2026-10-15** — App Logo & Visual Identity Design:
+  Designed brand identity: geofence radar concentric arcs, location pin, and alarm clapper crest.
+  Implemented Android adaptive icon (`ic_launcher_background.xml`, `ic_launcher_foreground.xml`, `ic_launcher_monochrome.xml`).
+  Configured Android 13+ dynamic themed icon support in `res/mipmap-anydpi-v26/`.
+  Built Jetpack Compose vector components (`ZoneAlarmLogoMark`, `ZoneAlarmLogoLockup`) with theme color adaptation.
+  Integrated logo into `AlarmListScreen` TopAppBar and `SettingsScreen` info card.
+  Generated SVG masters and interactive preview gallery in `docs/logo/`.
+  Verified on physical Xiaomi device: 15/15 unit tests pass, debug build deployed.
+- **2026-10-15** — Git Repository & GitHub Publish:
+  Configured `.gitignore` for Android build and environment artifacts.
+  Initialized git repository on `main` branch.
+  Committed project codebase, tests, docs, assets, and design system.
+  Linked remote and pushed to `https://github.com/mygemku/zone_alarm.git`.
 - **2026-09-28** — User chose truly-free maps. Phase 2 revision approved:
   drop Maps Compose/key; MapLibre Native + OpenFreeMap tiles + Nominatim
   search. Verified: OpenFreeMap keyless/unlimited; maplibre-compose is
