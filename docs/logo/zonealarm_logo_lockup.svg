@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 260" width="880" height="260">
+  <defs>
+    <linearGradient id="lockupPinGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="45%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="textAmberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#FBBF24"/>
+    </linearGradient>
+    <filter id="markShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Dark Background Plate -->
+  <rect width="880" height="260" rx="32" fill="#0B130E"/>
+  <rect width="878" height="258" x="1" y="1" rx="31" fill="none" stroke="#1E293B" stroke-width="2" stroke-opacity="0.7"/>
+
+  <!-- Icon Mark Container (Centered at x=130, y=130) -->
+  <g transform="translate(130, 130) scale(0.65) translate(-256, -256)">
+    <!-- Ground Ripples -->
+    <ellipse cx="256" cy="360" rx="72" ry="14" fill="none" stroke="#818CF8" stroke-width="5" stroke-opacity="0.55"/>
+    <ellipse cx="256" cy="360" rx="42" ry="8" fill="none" stroke="#F59E0B" stroke-width="4" stroke-opacity="0.85"/>
+
+    <!-- Acoustic Waves -->
+    <path d="M156,170 C130,202 130,254 156,286" fill="none" stroke="#6366F1" stroke-width="9" stroke-linecap="round" stroke-opacity="0.45"/>
+    <path d="M356,170 C382,202 382,254 356,286" fill="none" stroke="#6366F1" stroke-width="9" stroke-linecap="round" stroke-opacity="0.45"/>
+    <path d="M180,190 C162,212 162,244 180,266" fill="none" stroke="#818CF8" stroke-width="11" stroke-linecap="round" stroke-opacity="0.9"/>
+    <path d="M332,190 C350,212 350,244 332,266" fill="none" stroke="#818CF8" stroke-width="11" stroke-linecap="round" stroke-opacity="0.9"/>
+
+    <!-- Crown Ring -->
+    <circle cx="256" cy="130" r="16" fill="none" stroke="#FBBF24" stroke-width="8"/>
+
+    <!-- Pin-Bell Fusion -->
+    <g filter="url(#markShadow)">
+      <path d="M256,142
+               C294,142 318,176 318,218
+               C318,242 328,252 332,256
+               C314,289 276,327 256,355
+               C236,327 198,289 180,256
+               C184,252 194,242 194,218
+               C194,176 218,142 256,142 Z"
+            fill="url(#lockupPinGrad)"/>
+    </g>
+
+    <path d="M208,166 C198,190 198,218 194,236" fill="none" stroke="#FEF3C7" stroke-width="5" stroke-linecap="round" stroke-opacity="0.45"/>
+    <circle cx="256" cy="225" r="28" fill="#0F172A"/>
+    <circle cx="256" cy="225" r="14" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Vertical Divider -->
+  <line x1="244" y1="56" x2="244" y2="204" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Typography Lockup -->
+  <!-- "Zone" in Crisp White -->
+  <text x="274" y="146" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif" font-size="82" font-weight="800" fill="#F8FAFC" letter-spacing="-1.5">Zone<tspan fill="url(#textAmberGrad)">Alarm</tspan></text>
+
+  <!-- Tagline / Subtitle -->
+  <text x="278" y="186" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif" font-size="16" font-weight="700" fill="#94A3B8" letter-spacing="6">GEOFENCE WAKE ALARM</text>
+
+  <!-- Feature Pills -->
+  <g transform="translate(640, 102)">
+    <rect width="180" height="26" rx="6" fill="#1E293B"/>
+    <circle cx="16" cy="13" r="4" fill="#22C55E"/>
+    <text x="28" y="17" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#CBD5E1">KEYLESS GPS</text>
+  </g>
+  <g transform="translate(640, 136)">
+    <rect width="180" height="26" rx="6" fill="#1E293B"/>
+    <circle cx="16" cy="13" r="4" fill="#6366F1"/>
+    <text x="28" y="17" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#CBD5E1">MAPLIBRE NATIVE</text>
+  </g>
+</svg>

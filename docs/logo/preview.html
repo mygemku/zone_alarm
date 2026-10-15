@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZoneAlarm — Brand Logo & App Icon Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B130E;
+      --surface: #0F172A;
+      --surface-variant: #1E293B;
+      --surface-border: #334155;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --amber-primary: #F59E0B;
+      --amber-dark: #B45309;
+      --amber-light: #FBBF24;
+      --indigo-accent: #6366F1;
+      --indigo-light: #818CF8;
+      --success: #22C55E;
+    }
+
+    [data-theme="light"] {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-variant: #F1F5F9;
+      --surface-border: #E2E8F0;
+      --text-primary: #0F172A;
+      --text-secondary: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 40px 20px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .brand-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-title span {
+      color: var(--amber-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--surface-variant);
+      color: var(--amber-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .theme-toggle {
+      background: var(--surface-variant);
+      border: 1px solid var(--surface-border);
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--amber-primary);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .icon-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      background: var(--surface-variant);
+      border-radius: 12px;
+      min-height: 260px;
+    }
+
+    .app-icon {
+      width: 160px;
+      height: 160px;
+      transition: border-radius 0.3s ease;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+    }
+
+    .shape-selector {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+
+    .shape-btn {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .shape-btn.active, .shape-btn:hover {
+      border-color: var(--amber-primary);
+      color: var(--amber-primary);
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    /* Lockup Showcase */
+    .lockup-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    /* Concept Dissection */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .concept-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .concept-item {
+      background: var(--surface-variant);
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .concept-pill {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber-primary);
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .concept-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .concept-item p {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Palette */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .palette-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .swatch {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--surface-border);
+      background: var(--surface-variant);
+    }
+
+    .swatch-color {
+      height: 60px;
+      width: 100%;
+    }
+
+    .swatch-info {
+      padding: 8px;
+      font-size: 11px;
+    }
+
+    .swatch-name {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .swatch-hex {
+      font-family: monospace;
+      color: var(--text-secondary);
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1 class="brand-title">Zone<span>Alarm</span></h1>
+        <div class="badge">Brand Identity & App Icon System</div>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+    </header>
+
+    <!-- Main Visuals -->
+    <div class="grid-2">
+      <!-- 512x512 Master App Icon with Adaptive Shape Preview -->
+      <div class="card">
+        <div class="card-title">
+          <span>Android Launcher Icon</span>
+          <span style="font-size:12px; color:var(--success); font-weight:600;">Adaptive v26+</span>
+        </div>
+        <div class="card-subtitle">Location Pin + Wake Alarm Bell fusion with dual sonar pulse.</div>
+        
+        <div class="icon-stage">
+          <img id="previewIcon" class="app-icon" src="zonealarm_icon_mark.svg" alt="ZoneAlarm App Icon" style="border-radius: 36px;">
+        </div>
+
+        <div class="shape-selector">
+          <button class="shape-btn active" onclick="setShape('36px', this)">Squircle</button>
+          <button class="shape-btn" onclick="setShape('50%', this)">Circle</button>
+          <button class="shape-btn" onclick="setShape('16px', this)">Rounded Square</button>
+          <button class="shape-btn" onclick="setShape('50% 50% 50% 8px', this)">Teardrop</button>
+        </div>
+      </div>
+
+      <!-- Horizontal Lockup -->
+      <div class="card">
+        <div class="card-title">
+          <span>Brand Wordmark Lockup</span>
+          <span style="font-size:12px; color:var(--indigo-light); font-weight:600;">Official Mark</span>
+        </div>
+        <div class="card-subtitle">Primary logo lockup with custom typography & feature tags.</div>
+        
+        <div class="icon-stage" style="padding:16px;">
+          <img class="lockup-img" src="zonealarm_logo_lockup.svg" alt="ZoneAlarm Brand Lockup">
+        </div>
+      </div>
+    </div>
+
+    <!-- Symbology Dissection -->
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-title">
+        <span>Symbology & Design Rationale</span>
+      </div>
+      <div class="card-subtitle">Four visual layers engineered for instant recognition at 24dp up to 512dp.</div>
+      
+      <div class="concept-grid">
+        <div class="concept-item">
+          <div class="concept-pill">1</div>
+          <h4>The Beacon Pin</h4>
+          <p>Tapered GPS pin pointing directly to target destination coordinates.</p>
+        </div>
+        <div class="concept-item">
+          <div class="concept-pill">2</div>
+          <h4>The Alarm Bell</h4>
+          <p>Upper crown and flared skirt forming an resonant chime bell silhouette.</p>
+        </div>
+        <div class="concept-item">
+          <div class="concept-pill">3</div>
+          <h4>Sonar Waves</h4>
+          <p>Dual acoustic ripple arcs broadcasting active wake-up alert status.</p>
+        </div>
+        <div class="concept-item">
+          <div class="concept-pill">4</div>
+          <h4>Ground Radar</h4>
+          <p>Elliptical impact waves anchoring the geofence perimeter on earth plane.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color Palette -->
+    <div class="card">
+      <div class="card-title">
+        <span>Brand Color Palette</span>
+      </div>
+      <div class="card-subtitle">Contrast-calibrated tokens matching Jetpack Compose Color.kt</div>
+
+      <div class="palette-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F59E0B;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Amber 500</div>
+            <div class="swatch-hex">#F59E0B (Primary)</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#B45309;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Amber 700</div>
+            <div class="swatch-hex">#B45309 (Light CTA)</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#6366F1;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Indigo 500</div>
+            <div class="swatch-hex">#6366F1 (Pulse)</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#0F172A;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Slate 900</div>
+            <div class="swatch-hex">#0F172A (Surface)</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F8FAFC;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Slate 50</div>
+            <div class="swatch-hex">#F8FAFC (Highlight)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    }
+
+    function setShape(radius, btn) {
+      document.getElementById('previewIcon').style.borderRadius = radius;
+      document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Monochrome Silhouette for Single-Color / Themed Use -->
+  <!-- Ground Ripples -->
+  <ellipse cx="256" cy="360" rx="72" ry="14" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-opacity="0.4"/>
+  <ellipse cx="256" cy="360" rx="42" ry="8" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity="0.8"/>
+
+  <!-- Acoustic Waves -->
+  <path d="M156,170 C130,202 130,254 156,286" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-opacity="0.35"/>
+  <path d="M356,170 C382,202 382,254 356,286" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-opacity="0.35"/>
+  <path d="M180,190 C162,212 162,244 180,266" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-opacity="0.85"/>
+  <path d="M332,190 C350,212 350,244 332,266" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-opacity="0.85"/>
+
+  <!-- Crown Ring -->
+  <circle cx="256" cy="130" r="16" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+
+  <!-- Pin-Bell Fusion Body -->
+  <path d="M256,142
+           C294,142 318,176 318,218
+           C318,242 328,252 332,256
+           C314,289 276,327 256,355
+           C236,327 198,289 180,256
+           C184,252 194,242 194,218
+           C194,176 218,142 256,142 Z"
+        fill="#FFFFFF"/>
+
+  <!-- Cavity Cutout -->
+  <circle cx="256" cy="225" r="28" fill="#000000"/>
+
+  <!-- Focal Point -->
+  <circle cx="256" cy="225" r="14" fill="#FFFFFF"/>
+</svg>

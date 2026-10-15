@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Alarm Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --accent: #06b6d4; /* Cyan 500 */
+            --bg-dark: #0f172a; /* Slate 900 */
+            --card-dark: #1e293b; /* Slate 800 */
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Phone Container Mockup */
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            height: 800px;
+            max-height: 95vh;
+            background-color: var(--bg-dark);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 10px #1a1a1a;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Screen transitions */
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            background-color: var(--bg-dark);
+            z-index: 10;
+        }
+
+        .screen.hidden {
+            transform: translateX(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .screen.slide-left {
+            transform: translateX(-100%);
+        }
+
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: var(--accent);
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: var(--accent);
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #334155;
+            border-radius: 2px;
+        }
+
+        /* Map Mockup Background */
+        .map-bg {
+            background-color: #1e293b;
+            background-image: 
+                linear-gradient(#334155 1px, transparent 1px),
+                linear-gradient(90deg, #334155 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
+        }
+
+        /* Pulsing Geofence */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+        .geofence-circle {
+            animation: pulse-ring 3s infinite ease-in-out;
+        }
+
+        /* Ringing Animation */
+        @keyframes radar-pulse {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        .radar-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            margin-top: -75px;
+            margin-left: -75px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            animation: radar-pulse 1.5s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        .radar-wave:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        .radar-wave:nth-child(3) {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Status Bar Mockup -->
+        <div class="h-6 w-full flex justify-between items-center px-6 pt-2 text-xs font-medium text-gray-400 z-50 absolute top-0 left-0 bg-transparent">
+            <span>12:30</span>
+            <div class="flex space-x-1 items-center">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21L15.6 16.2C14.6 15.45 13.35 15 12 15C10.65 15 9.4 15.45 8.4 16.2L12 21ZM12 3C7.95 3 4.2 4.65 1.2 7.35L12 21.5L22.8 7.35C19.8 4.65 16.05 3 12 3Z"/></svg>
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M15.67 4H14V2H10V4H8.33C7.6 4 7 4.6 7 5.33V20.67C7 21.4 7.6 22 8.33 22H15.67C16.4 22 17 21.4 17 20.67V5.33C17 4.6 16.4 4 15.67 4Z"/></svg>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 1: HOME                             -->
+        <!-- ========================================== -->
+        <div id="screen-home" class="screen">
+            <div class="pt-16 pb-6 px-6 bg-slate-900 shadow-sm z-20">
+                <h1 class="text-3xl font-bold tracking-tight">Location Alarms</h1>
+                <p class="text-gray-400 text-sm mt-1">2 Active Alarms</p>
+            </div>
+
+            <div class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+                
+                <!-- Alarm Card 1 -->
+                <div class="bg-slate-800 rounded-2xl p-5 shadow-lg relative overflow-hidden group cursor-pointer" onclick="simulateArrival()">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-cyan-500"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h2 class="text-xl font-semibold text-white">Sudirman Station</h2>
+                            <div class="flex items-center text-gray-400 mt-2 text-sm">
+                                <svg class="w-4 h-4 mr-1 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                500m radius
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Tap to simulate arrival</div>
+                        </div>
+                        
+                        <!-- Toggle -->
+                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+                            <input type="checkbox" name="toggle" id="toggle1" checked class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out"/>
+                            <label for="toggle1" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer transition-colors duration-200 ease-in-out"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alarm Card 2 -->
+                <div class="bg-slate-800 rounded-2xl p-5 shadow-lg relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-cyan-500"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h2 class="text-xl font-semibold text-white">Grand Indonesia</h2>
+                            <div class="flex items-center text-gray-400 mt-2 text-sm">
+                                <svg class="w-4 h-4 mr-1 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                200m radius
+                            </div>
+                        </div>
+                        
+                        <!-- Toggle -->
+                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+                            <input type="checkbox" name="toggle" id="toggle2" checked class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out"/>
+                            <label for="toggle2" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer transition-colors duration-200 ease-in-out"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inactive Alarm Card -->
+                <div class="bg-slate-800 rounded-2xl p-5 shadow-lg relative overflow-hidden opacity-60">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-300">Home</h2>
+                            <div class="flex items-center text-gray-500 mt-2 text-sm">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                1km radius
+                            </div>
+                        </div>
+                        
+                        <!-- Toggle -->
+                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+                            <input type="checkbox" name="toggle" id="toggle3" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-gray-400 border-4 appearance-none cursor-pointer z-10"/>
+                            <label for="toggle3" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer"></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FAB -->
+            <button onclick="navTo('screen-add')" class="absolute bottom-8 right-6 w-16 h-16 bg-cyan-500 rounded-full shadow-[0_10px_25px_rgba(6,182,212,0.5)] flex items-center justify-center text-white hover:bg-cyan-400 transition-colors z-30">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            </button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 2: ADD ALARM                        -->
+        <!-- ========================================== -->
+        <div id="screen-add" class="screen hidden">
+            <!-- Header -->
+            <div class="pt-12 pb-4 px-4 flex items-center bg-slate-900 z-20 shadow-md">
+                <button onclick="navTo('screen-home')" class="p-2 text-cyan-500 hover:bg-slate-800 rounded-full transition-colors mr-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <h1 class="text-xl font-semibold">New Location Alarm</h1>
+            </div>
+
+            <!-- Map Area -->
+            <div class="map-bg h-[40%] w-full relative flex justify-center items-center overflow-hidden">
+                <!-- Geofence Visualization -->
+                <div class="geofence-circle absolute w-48 h-48 bg-cyan-500/20 border border-cyan-500/50 rounded-full pointer-events-none"></div>
+                <!-- Center Pin -->
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="w-4 h-4 bg-cyan-500 rounded-full shadow-[0_0_15px_#06b6d4]"></div>
+                    <div class="w-0.5 h-6 bg-cyan-500"></div>
+                    <div class="w-2 h-1 bg-black/50 rounded-full mt-0.5 blur-[1px]"></div>
+                </div>
+                
+                <!-- Floating Map Controls -->
+                <div class="absolute right-4 bottom-4 flex flex-col space-y-2">
+                    <button class="w-10 h-10 bg-slate-800 rounded-full shadow-lg flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <button class="w-10 h-10 bg-slate-800 rounded-full shadow-lg flex items-center justify-center text-cyan-500">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controls Sheet -->
+            <div class="flex-1 bg-slate-900 px-6 py-6 rounded-t-3xl -mt-6 z-20 flex flex-col">
+                <div class="w-12 h-1.5 bg-slate-700 rounded-full mx-auto mb-6"></div>
+                
+                <div class="space-y-6 flex-1">
+                    <!-- Search Input -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Target Location</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <input type="text" class="block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl leading-5 bg-slate-800 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm" placeholder="Search for an address or place..." value="Monas, Jakarta">
+                        </div>
+                    </div>
+
+                    <!-- Radius Slider -->
+                    <div>
+                        <div class="flex justify-between items-end mb-4">
+                            <label class="block text-sm font-medium text-gray-400">Trigger Radius</label>
+                            <span id="radius-value" class="text-lg font-bold text-cyan-400">500 m</span>
+                        </div>
+                        <input type="range" min="100" max="2000" step="100" value="500" id="radius-slider" oninput="updateRadius()">
+                        <div class="flex justify-between text-xs text-gray-500 mt-2">
+                            <span>100m</span>
+                            <span>2km</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <button onclick="navTo('screen-home')" class="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-4 px-4 rounded-xl shadow-[0_10px_20px_rgba(6,182,212,0.3)] transition-all mb-4">
+                    Save Alarm
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 3: RINGING ALERT                    -->
+        <!-- ========================================== -->
+        <div id="screen-ringing" class="screen hidden bg-slate-900 flex justify-center items-center">
+            
+            <!-- Animated Background Radars -->
+            <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+                <div class="radar-wave"></div>
+                <div class="radar-wave"></div>
+                <div class="radar-wave"></div>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center text-center px-6 w-full h-full justify-between py-20">
+                
+                <div class="mt-10">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-cyan-500/20 rounded-full mb-6">
+                        <svg class="w-10 h-10 text-cyan-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white tracking-tight mb-2">You have arrived!</h2>
+                    <p class="text-cyan-400 text-xl font-medium">Sudirman Station</p>
+                    <p class="text-gray-400 mt-4 text-sm max-w-[250px] mx-auto">You are within the 500m radius of your target destination.</p>
+                </div>
+
+                <!-- Stop Alarm Button -->
+                <button onclick="navTo('screen-home')" class="w-full bg-red-500 hover:bg-red-400 text-white font-bold py-5 px-4 rounded-full shadow-[0_10px_30px_rgba(239,68,68,0.4)] transition-transform active:scale-95 flex items-center justify-center space-x-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-lg">Slide or Tap to Stop</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Update slider text in real-time
+        function updateRadius() {
+            const slider = document.getElementById('radius-slider');
+            const output = document.getElementById('radius-value');
+            
+            let val = parseInt(slider.value);
+            if (val >= 1000) {
+                output.innerHTML = (val / 1000).toFixed(1) + ' km';
+            } else {
+                output.innerHTML = val + ' m';
+            }
+
+            // Optional: visually scale the geofence circle based on slider
+            const circle = document.querySelector('.geofence-circle');
+            if(circle) {
+                // Map slider (100-2000) to a scale (0.5 to 2.5) for visual effect
+                const scale = 0.5 + ((val - 100) / 1900) * 2;
+                circle.style.width = `${48 * scale}px`;
+                circle.style.height = `${48 * scale}px`;
+            }
+        }
+
+        // Simple navigation between screens
+        function navTo(targetId) {
+            const screens = document.querySelectorAll('.screen');
+            
+            screens.forEach(screen => {
+                if (screen.id === targetId) {
+                    screen.classList.remove('hidden');
+                } else {
+                    screen.classList.add('hidden');
+                }
+            });
+        }
+
+        // Simulate an alarm going off from the home screen
+        function simulateArrival() {
+            // Add a small delay for realistic feel
+            setTimeout(() => {
+                navTo('screen-ringing');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
