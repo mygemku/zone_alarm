@@ -9,6 +9,16 @@ Native Kotlin + Jetpack Compose, offline-first, no backend.
 - Full-screen siren + sound + vibration, Stop + 10-min Snooze
 - Works closed/killed; survives reboot; follows system dark/light theme
 
+## Download & Manual Install (.apk)
+Direct APK download for Android phones (API 26+ / Android 8.0+):
+- **Download APK:** [`ZoneAlarm-v1.0.apk`](release/ZoneAlarm-v1.0.apk) (Raw download: [Direct Link](https://github.com/mygemku/zone_alarm/raw/main/release/ZoneAlarm-v1.0.apk))
+- **Installation steps:**
+  1. Download `ZoneAlarm-v1.0.apk` directly on Android device.
+  2. Open the downloaded file from browser downloads or file manager.
+  3. If prompted, enable **"Install unknown apps"** for your browser / file manager.
+  4. Tap **Install** and open ZoneAlarm.
+  5. Grant Location & Notification permissions when prompted.
+
 ## Requirements
 - JDK 17, Android SDK (platform + build-tools 35), `ANDROID_HOME` set
   (machine setup recorded in `../TOOLCHAIN.md`)
